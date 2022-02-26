@@ -3,6 +3,8 @@ Stop giving Google your information.
 Stop giving Dropbox your money.
 Sovereign up and run your own damn server.
 
+![Untitled - February 25, 2022 17 54](https://user-images.githubusercontent.com/20099374/155859919-983e7f40-00e8-4228-b647-b863d86cb9aa.jpg)
+
 ## Project Background
 This project began after I temporarily lost access to some bitcoin on a lightning wallet I had set up on a Raspberry Pi 4. At the time, I was interested enough to go through the process: acquiring the precisely-specced hardware, learning how to flash software, how to setup remote access, how to troubleshoot if the internet or power went out, etc. I had even purchased a UPS (Uninterruptible Power Supply) and had remote access over Tor. It had been running smoothly and without issue for months when, suddenly, it died three days after I left for a two-week vacation.
 After getting back home, spending time on forums, and digging into every possible reason for its failure, I ultimately figured it was a hardware issue. I had an external hard drive plugged into the USB3 port on the Raspberry Pi and either the drive or the ports went caput. 
