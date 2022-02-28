@@ -2,7 +2,9 @@
 
 This is a plain-language, step-by-step guide for the computer novice looking to declare independence from Google and its ilk.
 
-![Server-Device-Map](https://user-images.githubusercontent.com/20099374/156054727-c31b879d-bb4b-4501-b3fe-c785aded7fdf.jpg)
+<p align="center">
+<img src="../Network-Device-Map.jpg" alt="map" title="map" />
+</p>
 
 
 ## Who is this guide for?
