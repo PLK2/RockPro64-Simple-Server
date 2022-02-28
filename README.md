@@ -21,5 +21,12 @@ While only minimal computer skills are required to get through this guide, it's 
 ## Project Background
 This project began after I temporarily lost access to some bitcoin on a lightning wallet I had set up on a Raspberry Pi 4. It was a "plug-and-play" node which meant it was easy to set up, but after I encountered the problem I quickly realized I had no idea what I was doing. I spent a lot of time on forums, DuckDuckGo, and YouTube, trying to decipher all the command-line-speak. After a while I figured out it was a hardware issue (likely the USB ports on my Raspberry Pi, or perhaps the external drive itself). After much headache and heartache I recovered my funds. With hard money on the line I figured I had better learn how to manage it under the hood (holding your own bitcoin is like driving a motorcycle alone across the desert: you better know what you're doing). That experience set me on a path to learn more about computers, servers, and coding, to better prepare myself for the inevitable upgrades and potential failures. In that process, I realized I could apply my new skills to build my own server. This guide is the result.
 
-* [01 Acquire and Assemble the Hardware](01-Acquire-and-Assemble-Hardware.md) - asdf
-* [02 Install Debian OS and Docker](02-Install-Debian-OS.md) - asdf
+## Table of Contents
+* [Step 01: Acquire and Assemble the Hardware](01-Acquire-and-Assemble-Hardware.md)
+* [Step 02: Install Debian OS](02-Install-Debian-OS.md)
+* [Step 03: Install Docker](03-Install-Docker.md)
+* [Step 04: Install the Applications](04-Install-Applications.md)
+* [Step 05: Backup Data and Power](05-backup-data-and-power.md)
+* [Appendix I: Principles](Appendix-i-Principles.md)
+* [Appendix II: Troubleshooting](Appendix-ii-Troubleshooting.md)
+* [Appendix III: Adding More Apps and Devices](Appendix-iii-Adding-Apps-or-Servers.md)
