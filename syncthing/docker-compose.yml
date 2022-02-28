@@ -1,0 +1,46 @@
+version: "2.1"
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:arm64v8-latest
+    container_name: syncthing
+    hostname: syncthing #optional
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIME_ZONE}
+    volumes:
+      - /raid/dockerapps/syncthing/config:/config
+      - /raid/dockerapps/syncthing/data1:/data1
+      - /raid/dockerapps/syncthing/data2:/data2
+    ports:
+      - 8384:8384
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.syncthing.rule=Host(`${TRAEFIK_SYNCTHING}`)"
+      - "traefik.http.routers.syncthing.entrypoints=https"
+      - "traefik.http.routers.syncthing.tls=true"
+      - "traefik.http.routers.syncthing.tls.certresolver=mydnschallenge"
+
+#      - "traefik.http.routers.syncthing.service=syncthing-svc"
+#      - "traefik.http.services.syncthing-svc.loadbalancer.server.port=8384"
+
+#      - "traefik.http.routers.syncthing.middlewares=auth"
+
+#      - "traefik.http.services.syncthing.loadbalancer.server.port=8384"
+#      - "traefik.http.services.syncthing.loadbalancer_sync.server.port=22000"
+#      - "traefik.http.services.syncthing.loadbalancer_sync_udp.server.port=21027/udp"
+#      - "traefik.http.middlewares.test-compress.compress=true"
+
+
+      # Watchtower Update
+      - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  proxy:
+    external: true

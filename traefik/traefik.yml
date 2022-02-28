@@ -1,0 +1,26 @@
+entryPoints:
+  http:
+    address: ":80"
+
+  https:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "tcp://socket-proxy:2375"
+    exposedByDefault: false
+
+  file:
+    directory: /rules
+    watch: true
+
+certificatesResolvers:
+  mydnschallenge:
+    acme:
+      email: typeyouremailaddresshere
+      storage: ./letsencrypt/acme.json
+      dnsChallenge:
+        provider: name cheap
+        delayBeforeCheck: 10
+log:
+  level: INFO

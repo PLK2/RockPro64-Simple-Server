@@ -1,0 +1,55 @@
+version: "3"
+services:
+  db:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+    logging:
+      driver: "none"
+    restart: unless-stopped
+    networks:
+      - internal
+    labels:
+     - traefik.enable=false
+    volumes:
+      - /raid/dockerapps/wiki/data:/var/lib/postgresql/data
+  wiki:
+    image: requarks/wiki:latest
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: ${DB_TYPE}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    restart: unless-stopped
+    ports:
+      - 3000
+    labels:
+     # - traefik.backend=wikijs
+     # - traefik.frontend.rule=Host:${TRAEFIK_WIKI}
+     # - traefik.docker.network=proxy
+     # - traefik.port=3000
+      - "traefik.enable=true"
+      - "traefik.http.routers.wiki.rule=Host(`${TRAEFIK_WIKI}`)"
+      - "traefik.http.routers.wiki.entrypoints=https"
+      - "traefik.http.routers.wiki.tls=true"
+      - "traefik.http.routers.wiki.tls.certresolver=mydnschallenge"
+
+      # Watchtower Update
+      - "com.centurylinklabs.watchtower.enable=true"
+
+    networks:
+      - internal
+      - proxy
+volumes:
+  db-data:
+networks:
+  proxy:
+    external: true
+  internal:
+    external: false

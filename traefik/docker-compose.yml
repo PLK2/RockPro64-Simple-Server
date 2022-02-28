@@ -1,0 +1,75 @@
+version: "3"
+
+services:
+  traefik:
+    image: "traefik:latest"
+    container_name: "traefik"
+    restart: unless-stopped
+    depends_on:
+      - socket-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "./traefik.yml:/traefik.yml:ro"
+      - "./rules:/rules:ro"
+      - "./letsencrypt:/letsencrypt"
+    environment:
+      - NAMECHEAP_API_KEY=${NAMECHEAP_API_KEY}
+      - NAMECHEAP_API_USER=${NAMECHEAP_API_USER}
+      - TZ=${TIME_ZONE}
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+     # - "api.dashboard=true"
+     # - "api.insecure=true"
+      # global redirect to https
+      - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+      - "traefik.http.routers.http-catchall.entrypoints=http"
+      - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+
+      # middleware redirect
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
+
+      # redirect root to www
+     # - "traefik.http.routers.root.rule=host(`${DOMAIN}.${TLD}`)"
+     # - "traefik.http.routers.root.entrypoints=https"
+     # - "traefik.http.routers.root.middlewares=redirect-root-to-www"
+     # - "traefik.http.routers.root.tls=true"
+
+      # middleware redirect root to www
+     #  - "traefik.http.middlewares.redirect-root-to-www.redirectregex.regex=^https://${DOMAIN}\\.${TLD}/(.*)"
+     #  - "traefik.http.middlewares.redirect-root-to-www.redirectregex.replacement=https://www.${DOMAIN}.${TLD}/$${1}"
+
+      # Traefik Dashboard
+     # - "traefik.http.routers.dashboard.entrypoints=https"
+     # - "traefik.http.routers.dashboard.tls=true"
+     # - "traefik.http.routers.dashboard.rule=Host(`traefik.${DOMAIN}.${TLD}`) && (PathPrefix(`/api/`) || PathPrefix(`/dashboard/`))"
+     # - "traefik.http.routers.dashboard.service=api@internal"
+     # - "traefik.http.routers.dashboard.middlewares=auth"
+     # - "traefik.http.middlewares.auth.basicauth.users=test:typeyourpasswordhere"
+     # - "traefik.http.routers.dashboard.tls.certresolver=mydnschallenge"
+
+      # Watchtower Update
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  socket-proxy:
+    image: tecnativa/docker-socket-proxy
+    container_name: traefik-socket-proxy
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      CONTAINERS: 1
+    networks:
+      - proxy
+    labels:
+      # Watchtower Update
+      - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  proxy:
+    external: true
