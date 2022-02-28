@@ -2,6 +2,9 @@
 
 This is a plain-language, step-by-step guide for the computer novice looking to declare independence from Google and its ilk.
 
+![Server-Device-Map](https://user-images.githubusercontent.com/20099374/156054727-c31b879d-bb4b-4501-b3fe-c785aded7fdf.jpg)
+
+
 ## Who is this guide for?
 This guide is intended for the novice coder, the non-technical-yet-curious, or the Linux greenhorn; those of us looking for an escape route from Big Tech with better privacy and personal sovereignty. If you are one of those people, this guide is for you. It will hold your hand at each step while you spin up your own server with the other.
 
