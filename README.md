@@ -3,7 +3,7 @@
 This is a plain-language, step-by-step guide for the computer novice looking to declare independence from Google and its ilk.
 
 <p align="center">
-<img src="../_utilities/Network-Device-Map.png" alt="map" title="map" />
+<img src="_utilities/Network-Device-Map.png" alt="map" title="map" />
 </p>
 
 
