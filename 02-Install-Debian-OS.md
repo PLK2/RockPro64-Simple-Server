@@ -1,9 +1,15 @@
 # 02 - Install Debian OS
-*Allocate a few hours for this.*
+*Set aside a couple hours.*
 
 Before we get started, a few things:
 
-- There's "graphical user interface" (GUI) and "command line interface" (CLI). GUI is what you're used to: Windows or macOS, where files look like files and trashcans look like a trashcans. But you realize there aren't real "files" in your computer, right? It's a facade to make it easier for us mere mortals to interact with computers. I read somewhere that "GUI makes easy things easier, but CLI makes difficult things possible." GUI is like teeth-whitening tooth paste: someone else has done the chemistry, you just need to dab it on. CLI, on the other hand, is like doing invasive oral surgery: you're drilling out your own teeth to install a gold grill. It's an awesome power, but you have to be careful. Pay extreme attention to the smallest of details. I recommend copying/pasting the commands from this guide to minimize the chance of a typo.
+- There's "graphical user interface" (GUI) and then there's "command line interface" (CLI). GUI is what you're already used to: Windows or macOS, where files look like files and trashcans look like a trashcans. But you realize there aren't real "files" in your computer, right? It's a facade to make it easier for us mere mortals to interact with computers. I read somewhere that **"GUI makes easy things easier, but CLI makes difficult things possible."** GUI is like teeth-whitening tooth paste: someone else has done the chemistry, you just need to dab it on. CLI, on the other hand, is like doing invasive oral surgery: you're drilling out your own teeth but the payoff is being able to install your own gold grill. It's an awesome power, but you have to be careful. Pay extreme attention to the smallest of details. I recommend copying/pasting the commands from this guide to minimize the chance of a typo.
+- Speaking of Windows and macOS, forget about those and let's talk about Linux. **Linux** is the behind-the-scenes operating system that powers the world and we're going to use it to power our server. Since you're interested in getting into the server business, it's a good skill to have. As the joke goes:
+
+> "Daddy, what are clouds made of?"
+> 
+> "Linux servers, mostly."
+
 - All computer processors run on different *architectures*: there's x86, ARM, ARM64, etc. For our purposes, all you need to know is that the RockPro64 has an **ARM64 processor**. That means that any program needs to be built specifically for this architecture, otherwise it won't work.
 
 Ok, let's get started.
@@ -98,31 +104,39 @@ On another computer, open Terminal and SSH into your server in as "bob".
 
 If everything worked, you can unplug the keyboard and monitor from the RockPro64. Congratulations: you now have a headless server.
 
+To access it from another computer on your network, you'll need to *port forward* to it from your router. This process is different for each router, but for mine (an Asus) it goes like this:
+1. Log into the dashboard, which for me just means going to a web browser and typing in http://192.168.10.1/ (the IP address of my router).
+2. Advanced Settings / WAN / Port Forwarding
+3. Click *Add Profile*
+4. Add a *Service Name* for reference, like "ServerPort22".
+5. Set *Protocol* to TCP.
+6. Set *External Port* to 22.
+7. Then select the *Internal IP address* of your server.
+8. Then click *Ok* and you're done.
+
 ## Step 4. Verify it works
 
-"Daddy, what are clouds made of?"
-
-"Linux servers, mostly."
 
 
-## Step 5. Format External Drive(s) and Set Up RAID1
+
+## Step 5. Mount External Drive(s) and Set Up RAID1
 *Allocate 30 minutes*
 
-RAID (Redundant Array of Inexpensive Disks) is a way of duplicating your data to protect against hardware failure; if one of your drives fail, you have a second that's an exact copy.
+RAID (Redundant Array of Inexpensive Disks) is a way of duplicating your data to protect against hardware failure; if one of your drives fails, you have a second that's an exact copy. Since we're ditching Google and its convenient backup systems, that means we need to make our own backups. Skipping the middle (wo)man means you're THE (WO)MAN. It's all on you.
 
-SSH into your server.
+SSH into your server as user "bob".
 
 See all drives connected to your RockPro64:
 `lsblk`
 
-Your SSDs will likely show up as /dev/sda and /dev/sdb. This guide will continue under that assumption, but if you happen to have different disk names then use those instead.
+Your SSDs will show up as /dev/sda and /dev/sdb, or something similar. This guide will continue under that assumption, but if you happen to have different disk names then use those instead.
 
 Let's start with mounting and formatting the first disk:
 `sudo fdisk /dev/sda`
 
 Type "n" to create a new partition then select all the defaults.
 
-Type "t" to select the partition type. We want to use "Linux RAID" or "Linux RAID autodetect" (whichever comes up for your particular drive). These may be listed with an identifier like "fd" or "29". You'll type that identifier into your command line prompt.
+Type "t" to select the partition type. We want to use *Linux RAID* or *Linux RAID autodetect* (whichever comes up for your particular drive). These may be listed with an identifier like *fd* or *29*. You'll type that identifier into your command line prompt.
 
 Type "w" to write the changes to the disk.
 
@@ -132,15 +146,15 @@ Confirm all changes were successfully made:
 Now do the exact same thing for your second disk (/dev/sdb).
 
 ## Step 3
-Follow only a portion of this guide: https://unix.stackexchange.com/questions/544841/my-raid-1-always-renames-itself-to-dev-md127-after-rebooting-debian-10
+> Note: the following comes from a portion of this guide: [https://unix.stackexchange.com/questions/544841/my-raid-1-always-renames-itself-to-dev-md127-after-rebooting-debian-10](https://unix.stackexchange.com/questions/544841/my-raid-1-always-renames-itself-to-dev-md127-after-rebooting-debian-10)
 
-Create the RAID (we will identify this new drive by /dev/md0):
+Create the RAID (we will identify this new RAID drive as /dev/md0):
 `sudo mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/sda /dev/sdb`
 
-Edit the file "mdadm.conf":
+Edit the file *mdadm.conf*:
 `sudo nano /etc/mdadm/mdadm.conf`
 
-Delete all content inside (if any) and replace it with this text (minus the ``` symbols):
+Delete all content inside (if any) and replace it with this text (minus the ``` symbols, if you see those):
 
 ```
 # mdadm.conf
@@ -162,12 +176,12 @@ MAILADDR root
 # definitions of existing MD arrays
 ```
 
-Control-o to write-out and save changes.
+On your keyboard, hit *Control-O* to write-out and save changes.
 
-Control-x to exit.
+Then *Control-X* to exit.
 
 
-Now we need to add a reference to your new RAID inside the mdadm.conf file you just edited.
+Now we need to add a reference to your new RAID inside the *mdadm.conf* file you just edited.
 
 First, switch user to "root":
 `sudo su - root`
@@ -199,7 +213,7 @@ HOMEHOST <system>
 MAILADDR root
 
 # definitions of existing MD arrays
-ARRAY /dev/md0 metadata=1.2 name=buster:1 UUID=1279dbd2:d0acbb4f:0b34e3e1:3de1b3af
+ARRAY /dev/md0 metadata=1.2 name=buster:1 UUID=1309dda4:d0bcbb8g:0ce3434ce:21dbb2f33
 ```
 
 If the command added something before the "ARRAY" line, delete it.
@@ -215,22 +229,21 @@ Make sure you have "btrfs" files system on your OS:
 Apply the btrfs file system to your RAID:
 `mkfs.btrfs /dev/md0`
 
-Finally, reference this guide for how to automount your RAID: [https://linoxide.com/raid-mirror-disks-in-linux/](https://linoxide.com/raid-mirror-disks-in-linux/)
-
-
 Now our RAID is ready. But first, we have to mount it (ie, tell Debian we can use it to store data). We create a directory for mounting this device and create an entry in /etd/fstab file for automatically mounting on boot.
 
-Make a new directory upon which we'll mount the RAID. This guide will use "/raid":
+> Note: The following references this guide for how to mount and automount your RAID: [https://linoxide.com/raid-mirror-disks-in-linux/](https://linoxide.com/raid-mirror-disks-in-linux/)
+
+Make a new directory upon which we'll mount the RAID. This guide will use */raid*:
 `mkdir /raid`
 
-Mount our RAID disk md0 to the new directory /raid:
+Mount our RAID disk *md0* to the new directory */raid*:
 `mount /dev/md0 /raid`
 
 Et voila! We can create and save files onto our RAID. Try it with this:
 `touch /raid/file1.txt`
 
 
-Now we need to modify /etc/fstab so that the RAID automatically mounts after a reboot:
+Now we need to modify */etc/fstab* so that the RAID automatically mounts after a reboot:
 `echo "/dev/md0 /raid btrfs defaults 0 0" >> /etc/fstab`
 
 To see if that worked, unmount the RAID:
@@ -239,27 +252,31 @@ To see if that worked, unmount the RAID:
 Then execute this and see if it remounted itself:
 `mount -a`
 
-The output of that command should show that /dev/md0 successfully mounted to directory /raid. Yay!
+The output of that command should show that */dev/md0* successfully mounted to directory */raid*.
 
+Yahoo!
 
 # Extra Credit
 
 ## Install a Fan Controller
-Install fan controller (otherwise the thing will blast unnecessarily at the highest RPM).
+For some reason, the default setting is to have the fan running at full blast with no way to adjust it. A fan controller will automatically adjust the fan speed based on the temperature of your SBC.
 
 Go to [https://github.com/tuxd3v/ats](https://github.com/tuxd3v/ats) and follow the installation instructions.
 
-After install, you can see the status:
+After install, you can see the status by executing:
 `systemctl status ats`
 
 
 ## Improve SSH Security
-To SSH remotely (from outside the local home network), use this command in terminal:
+To SSH remotely (from outside the local home network), use this command in your terminal:
 
-`ssh -p 22 pk@74.73.229.5
-(that's port 22 connecting through the public IP address)
+`ssh -p 22 bob@YourPublicIPAddressHere`
+
+(That means use port 22 connecting through the public IP address)
 
 For better security, **change the default SSH port 22!**
 [[202202232049 Change Default SSH Port 22 to Something Else for Better Security]]
 
-Currently, I'm using port **46092**.
+You can use any random number (like 11692) as long as it's below 64-thousand-something. Apparently, there are scary bots roaming the internet, sniffing out standard port 22s and seeing if they can break in. By cutting off that port, you make it that much harder for a bot to find you.
+
+`ssh -p 11692 bob@YourPublicIPAddressHere`

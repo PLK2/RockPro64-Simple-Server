@@ -4,19 +4,14 @@ Because this guide is written for the non-technical-yet-curious, I highly recomm
 
 | Hardware | Notes | Link |
 |:--|:--|:--|
-| **RockPro64 single board computer** | Spring for the 4gb RAM version. | https://pine64.com/product-category/rockpro64/ |
-| **Pine64 NAS Case + accessories** | with fan and cables | https://pine64.com/product-category/rockpro64/ |
-| **Two SSD Drives** | In this guide we will be combining two SSDs into a single RAID drive. You can still follow along easily if you opt to do a single SATA drive or some other arrangement. |  |
-| **One MicroSD** | You can get by with 8gb. I've read that these are prone to failure due to non-stop wear and tear of reading and writing, so consider getting an "industrial" grade, though the read/write speeds may be compromised on those. |  |
-| **Power Supply** | To minimize variables and potential issues, purchase the power supply directly from Pine64, but you can also purchase a generic 12V/5A power supply from wherever. | https://pine64.com/product/rockpro64-12v-5a-us-power-supply/ |
-|  |  |  |
-|  |  |  |
-
-- **RockPro64 single board computer** //Spring for the 4gb RAM version. [https://pine64.com/product-category/rockpro64/](https://pine64.com/product-category/rockpro64/)
-- **Pine64 NAS Case + accessories** //with fan and cables
-- **Two SSD Drives** //In this guide we will be combining two SSDs into a single RAID drive. You can still follow along easily if you opt to do a single SATA drive or some other arrangement.
-- **One MicroSD** //You can get by with 8gb. I've read that these are prone to failure due to non-stop wear and tear of reading and writing, so consider getting an "industrial" grade, though the read/write speeds may be compromised on those.
-- **Power Supply** //To minimize variables and potential issues, purchase the power supply directly from Pine64, but you can also purchase a generic 12V/5A power supply from wherever.
+| **RockPro64 single board computer** | Spring for the 4gb RAM version. | [https://pine64.com/product-category/rockpro64/](https://pine64.com/product-category/rockpro64/) |
+| **Pine64 NAS Case** | This comes with the case and SATA cables, but you'll need to buy a few more accessories for it (included below). | [https://pine64.com/product-category/rockpro64/](https://pine64.com/product-category/rockpro64/) |
+| **Power Supply** | To minimize variables and potential issues, purchase the power supply directly from Pine64, but you can also purchase a generic 12V/5A power supply from wherever. | [https://pine64.com/product/rockpro64-12v-5a-us-power-supply/](https://pine64.com/product/rockpro64-12v-5a-us-power-supply/) |
+| **PCIe To Dual SATA-III Interface Card** |  | [https://pine64.com/product/pcie-to-dual-sata-iii-interface-card/](https://pine64.com/product/pcie-to-dual-sata-iii-interface-card/) |
+| **NAS Case Fan** |  | [https://pine64.com/product/fan-for-rockpro64-metal-desktop-nas-casing/](https://pine64.com/product/fan-for-rockpro64-metal-desktop-nas-casing/) |
+| **ROCKPro64 30mm Tall Profile Heatsink** |  | [https://pine64.com/product/rockpro64-30mm-tall-profile-heatsink/](https://pine64.com/product/rockpro64-30mm-tall-profile-heatsink/) |
+| **Two SATA SSD Drives** | 250gb+ In this guide we will be combining two SSDs into a single RAID drive (two drives that act as one for failsafe reasons), but you can opt to use a single drive, or HDD, or what have you. | [https://www.bhphotovideo.com/c/product/1581254-REG/seagate_za1000nm1a002_1tb_ironwolf_125_sata.html](https://www.bhphotovideo.com/c/product/1581254-REG/seagate_za1000nm1a002_1tb_ironwolf_125_sata.html) |
+| **One MicroSD** | 8gb+. I've read that these are prone to failure due to wear and tear from non-stop  reading and writing, so consider getting an "industrial" grade. | [https://www.bhphotovideo.com/c/product/1466561-REG/sandisk_sdsqqnr_032g_an6ia_high_endurance_microsd_32gb.html/overview](https://www.bhphotovideo.com/c/product/1466561-REG/sandisk_sdsqqnr_032g_an6ia_high_endurance_microsd_32gb.html/overview) |
 
 You can purchase the above from these suppliers:
 - https://pine64.com/
@@ -26,4 +21,5 @@ If ordering from Pine64, I recommend you pay the premium for UPS shipping as the
 
 ## Assembly
 Assembling your server is easy and straight forward. Grab a screw driver and watch this video:
+
 [https://www.youtube.com/watch?v=_UeeklKo0Og](https://www.youtube.com/watch?v=_UeeklKo0Og)
