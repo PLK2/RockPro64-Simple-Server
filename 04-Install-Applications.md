@@ -32,17 +32,18 @@ Now go to your *Domain List* and click *Manage* next to your domain. Select *Adv
 ## Required Apps
 These applications will allow your server to run smoothly and securely. I recommend you start with these.
 
-For *Traefik/fail2ban*, *Gotify*, and *Watchtower*, read through the *BaptisteBdn guide* referenced above to learn about those programs.
+For *Traefik*, *fail2ban*, *Gotify*, and *Watchtower*, read through the *BaptisteBdn guide* referenced above to learn about those programs, then click on the links below to access my `.yml` files.
 
-*Duplicati* is a program I found as a replacement for BaptisteBdn's *Borg*. Borg won't run on a RockPro64 as I couldn't find an arm64 version.
+*Duplicati* is a program I found as a replacement for BaptisteBdn's *Borg*. Borg won't run on a RockPro64 as I couldn't find an arm64 version. When you click on that link below, you'll see a bit more information on it.
 
-### Traefik/fail2ban
-### Gotify
-### Watchtower
-### Duplicati
+* [Traefik](traefik/)
+* [fail2ban](fail2ban/)
+* [Gotify](gotify/)
+* [Watchtower](watchtower/)
+* [Duplicati](duplicati/)
 
 ## Recommended Apps
-***
+
 ### File Browser
 ### Wordpress
 ### Flame
