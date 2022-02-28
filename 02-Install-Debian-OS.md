@@ -3,7 +3,7 @@
 
 Before we get started, a few things:
 
-- There's "graphical user interface" (GUI) and then there's "command line interface" (CLI). GUI is what you're already used to: Windows or macOS, where files look like files and trashcans look like a trashcans. But you realize there aren't real "files" in your computer, right? It's a facade to make it easier for us mere mortals to interact with computers. I read somewhere that **"GUI makes easy things easier, but CLI makes difficult things possible."** GUI is like teeth-whitening tooth paste: someone else has done the chemistry, you just need to dab it on. CLI, on the other hand, is like doing invasive oral surgery: you're drilling out your own teeth but the payoff is being able to install your own gold grill. It's an awesome power, but you have to be careful. Pay extreme attention to the smallest of details. I recommend copying/pasting the commands from this guide to minimize the chance of a typo.
+- There's *graphical user interface* (GUI) and then there's *command line interface* (CLI). GUI is what you're already used to: Windows or macOS, where files look like files and trashcans look like a trashcans. But you realize there aren't real *files* in your computer, right? It's a facade to make it easier for us mere mortals to interact with computers. I read somewhere that **"GUI makes easy things easier, but CLI makes difficult things possible."** GUI is like teeth-whitening tooth paste: someone else has done the chemistry, you just need to dab it on. CLI, on the other hand, is like doing invasive oral surgery: you're drilling out your own teeth but the payoff is being able to install your own gold grill. It's an awesome power, but you have to be careful. Pay extreme attention to the smallest of details. I recommend copying/pasting the commands from this guide to minimize the chance of a typo.
 - Speaking of Windows and macOS, forget about those and let's talk about Linux. **Linux** is the behind-the-scenes operating system that powers the world and we're going to use it to power our server. Since you're interested in getting into the server business, it's a good skill to have. As the joke goes:
 
 > "Daddy, what are clouds made of?"
@@ -26,8 +26,8 @@ Go to Debian's download page:
 [https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/netboot/SD-card-images/](https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/netboot/SD-card-images/)
 
 Download and save these files to your Downloads folder:
-1. "firmware.rockpro64-rk3399.img.gz"
-2. "partition.img.gz"
+1. `firmware.rockpro64-rk3399.img.gz`
+2. `partition.img.gz`
 
 Open Terminal on your Mac.
 
@@ -51,11 +51,11 @@ Download, install, and open balenaEtcher.
 
 Insert your microSD card.
 
-Click "Select image" and select your file "complete_image.img".
+Click *Select image* and select your file `complete_image.img`.
 
-Click "Select drive" and select your microSD card.
+Click *Select drive* and select your microSD card.
 
-Click "Flash!", input your password if prompted, then a few seconds later your microSD is ready.
+Click *Flash!*, input your password if prompted, then a few seconds later your microSD is ready.
 
 Eject your microSD and insert it into your RockPro64.
 
@@ -68,21 +68,20 @@ Eject your microSD and insert it into your RockPro64.
 Connect a monitor and keyboard to your RockPro64 (this is only temporary during the installation process) then power on.
 
 The installation should automatically begin. You'll see things happening on your monitor. Wait a bit and eventually you'll be prompted for input.
-1. The "hostname" is how your server will be identified by your network router. For this guide, we'll use the hostname "superserver".
-2. For "domain", leave blank.
-3. The installation process will set up two different "users". The "root" user is all-powerful and has access to everything.  When prompted, create a password for this user.
+1. The *hostname* is how your server will be identified by your network router. For this guide, we'll use the hostname "superserver".
+2. For *domain*, leave blank.
+3. The installation process will set up two different *users*. The *root* user is all-powerful and has access to everything.  When prompted, create a password for this user.
 4. The second user (for this guide we'll use username "bob") will need a separate password.
 
-Once you arrive at the "Detecting disks / partitioning" portion of the installation, select your microSD (which will show up as mlcmmd or something).:
+Once you arrive at the *Detecting disks / partitioning* portion of the installation, select your microSD (which will show up as mlcmmd or something).
 
-Select "Guided: Use the largest continuous free space", select the SD //previously  I tried "Guided: Use entire disk" which ultimately failed, so maybe that was the problem?
-Select "All files in one partition"
+Select *Guided: Use the largest continuous free space*, then select your microSD.
 
-You'll be asked "Write the changes to disk?" Confirm all looks ok then select "yes" (use the tab key then hit return).
+You'll be asked *Write the changes to disk?* Confirm all looks ok then select "yes" (use the tab key then hit return).
 
-Next you'll be asked what exactly to install. Don't include a desktop or web server (select or unselect with the spacebar) when prompted. **The only thing you need to select is SSH and standard utilities.**
+Next you'll be asked what exactly to install. Don't include a desktop or web server (select or unselect with the spacebar, and move up and down with the arrow keys) when prompted. **The only thing you need to select is SSH and standard utilities.**
 
-*Note: "root" user does not have SSH enabled by default. Leave it that way for safety, but to do it temporarily: [[202202011231 How to give root SSH access]]*
+*Note: The root user does not have SSH enabled by default. Leave it that way for safety, but to do it temporarily: [[202202011231 How to give root SSH access]]*
 
 After a while longer you'll see a login prompt.
 
@@ -129,7 +128,7 @@ SSH into your server as user "bob".
 See all drives connected to your RockPro64:
 `lsblk`
 
-Your SSDs will show up as /dev/sda and /dev/sdb, or something similar. This guide will continue under that assumption, but if you happen to have different disk names then use those instead.
+Your SSDs will show up as */dev/sda* and */dev/sdb*, or something similar. This guide will continue under that assumption, but if you happen to have different disk names then use those instead.
 
 Let's start with mounting and formatting the first disk:
 `sudo fdisk /dev/sda`
@@ -151,7 +150,7 @@ Now do the exact same thing for your second disk (/dev/sdb).
 Create the RAID (we will identify this new RAID drive as /dev/md0):
 `sudo mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/sda /dev/sdb`
 
-Edit the file *mdadm.conf*:
+Edit the file `mdadm.conf`:
 `sudo nano /etc/mdadm/mdadm.conf`
 
 Delete all content inside (if any) and replace it with this text (minus the ``` symbols, if you see those):
