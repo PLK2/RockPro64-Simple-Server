@@ -34,7 +34,7 @@ These applications will allow your server to run smoothly and securely. I recomm
 
 For *Traefik*, *fail2ban*, *Gotify*, and *Watchtower*, read through the *BaptisteBdn guide* referenced above to learn about those programs, then click on the links below to access my `.yml` files.
 
-*Duplicati* is a program I found as a replacement for BaptisteBdn's *Borg*. Borg won't run on a RockPro64 as I couldn't find an arm64 version. When you click on that link below, you'll see a bit more information on it.
+*Duplicati* is a program I found as a replacement for BaptisteBdn's *Borg*. Borg won't run on a RockPro64 as I couldn't find an arm64 version.
 
 * [Traefik](traefik/)
 * [fail2ban](fail2ban/)
@@ -42,14 +42,55 @@ For *Traefik*, *fail2ban*, *Gotify*, and *Watchtower*, read through the *Baptist
 * [Watchtower](watchtower/)
 * [Duplicati](duplicati/)
 
+In general, here are the steps to modifying the files and executing them with Docker. I'll use Duplicati as the example:
+
+1. Save the *.env* and *.yml* files into the directory */raid/dockerapps/duplicati*.
+2. Navigate to that directory: `cd /raid/dockerapps/duplicati`
+3. Modify the environment file to your network specs: `sudo nano .env`
+4. Once you've made all your changes, write those changes with `Control-O` then exit with `Control-X`.
+5. Open up the *.yml* file: `sudo nano docker-compose.yml`
+6. Notice the *ports* specified (in this case 8200). You will need to forward any ports listed to your server from within your router's settings.
+7. Notice the *volumes* specified. Those are actually *symbolic links*. Duplicati lives inside of a docker container and doesn't know of anything outside that container. So when it asks for the */backups* directory, Docker knows to give it access to */raid/duplicati-backups* which lives outside the container. The format of the symbolic link is exterior:interior. Create the exterior directories as necessary using the `mkdir` command.
+8. Once you have modified and saved all files, you can call up Docker to get things rolling: `sudo docker-compose up -d`
+9. Docker will begin downloading, extracting, and then starting. Once started, you can see all active containers with `sudo docker ps`.
+10. To check the logs (a behind-the-scenes play-by-play which allows you to make sure everything is running smoothly and to troubleshoot): `sudo docker logs duplicati`
+11. If you need to make any changes to the *.env* or *.yml* files, first stop the container with `sudo docker stop duplicati`, modify the files, then simply `sudo docker-compose up -d` to recreate the container with your updates.
+
+Once you have Traefik, fail2ban, Gotify, Watchtower, and Duplicati running, then you can proceed with the fun stuff.
+
+
 ## Recommended Apps
 
-### File Browser
-### Wordpress
-### Flame
-### ArchiveBox
-### Syncthing
-### Wiki.js
-### Pi-Hole
+For **Wordpress**, refer to the [BaptisteBdn guide](https://github.com/BaptisteBdn/docker-selfhosted-apps) then click on my link below.
 
+For the others, the links below are all you need.
+
+* [File Browser](filebrowser/)
+* [Wordpress](wordpress/)
+* [Flame](flame/)
+* [ArchiveBox](archivebox/)
+* [Syncthing](syncthing/)
+* [Wiki.js]
+* Pi-Hole - *Currently, I have Pi-Hole set up on a separate Raspberry Pi 3b. This program is likely my favorite of them all: it is a network-wide ad blocker that prevents ads from ever entering your network. This saves substantial speed and data usage. I am still looking into whether or not to move this to my RockPro64 server.*
+
+**What I did and did not pull from the BaptistBdn Guide:**
+
+| BaptistBdn App | arm64 Version? | Notes |
+|:--|:--|:--|
+| borg-backup | no | Replaced this with Duplicati. |
+| fail2ban | yes |  |
+| freshrss | ? | Did not use. |
+| gotify | yes |  |
+| jellyfin | ? | Did not use. |
+| nextcloud | yes | Ultimately decided this had too many bells and whistles, ie, things to go wrong, so I simplified with FileBrowser |
+| seafile | no | Replaced this with Syncthing. |
+| synapse-element | ? | Did not use. |
+| traefik | yes |  |
+| transmission | ? | Did not use. |
+| trilium | yes | I didn't like the UI so I opted for Wiki.js instead. |
+| vaultwarden | ? | Did not use, but still considering. |
+| watchtower | yes |  |
+| webserver | yes | Did not use, but still considering. |
+| wireguard-pihole-unbound | ? | Did not use, but still considering. |
+| wordpress | yes |  |
 
