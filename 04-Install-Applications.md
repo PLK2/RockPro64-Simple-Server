@@ -1,6 +1,6 @@
 # 04 - Install Applications
 
-> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64; I opted not to install some of the apps (see the [table](#BaptisteBdn-Apps-Table) at the bottom of this section) and did not include them here. I forked some of the other app folders and copied them here to this repository. You are of course welcome to reference that guide and make your own calls.
+> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64 (see the [table](#BaptisteBdn-Apps-Table) at the bottom of this section for details).
 
 ## Procure a domain name
 
@@ -37,9 +37,9 @@ For Traefik (one of the apps you'll soon be installing), we're going to need an 
 Start by _cloning_ (aka, copying) the **RockPro64 Simple Server** GitHub _repository_ (aka, all the files and folders) over to your server.
 
 1. SSH into your server as "bob" then navigate to */raid*: `cd /raid`
-2. While in that directory, clone the  GitHub repository. We want to avoid saving anything else on the microSD (that should only have Debian OS and Docker installed on it). Our RAID should have all our application files and data, so get used to saving things in the */raid* directory: `git clone https://github.com/PLK2/RockPro64-Simple-Server.git`
+2. While in that directory, clone the  GitHub repository. (A this point we want to avoid saving anything else onto the microSD--that should only have Debian OS and Docker installed on it). Our RAID should have all our application files and data, so get used to saving things in the */raid* directory: `git clone https://github.com/PLK2/RockPro64-Simple-Server.git`
 3. Verify that all worked: `ls`
-4. If you'd like, you can rename the director to "dockerapps" or something else more manageable: `sudo mv -r RockPro64-Simple-Server dockerapps`
+4. If you'd like, you can rename the directory to "dockerapps" or something else more manageable: `sudo mv -r RockPro64-Simple-Server dockerapps`
 
 ## Required Apps
 These applications will allow your server to run smoothly and securely. I recommend you start with these.
