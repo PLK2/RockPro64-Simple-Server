@@ -253,7 +253,10 @@ Then execute this and see if it remounted itself:
 
 The output of that command should show that */dev/md0* successfully mounted to directory */raid*.
 
-Yahoo!
+***
+
+On to [Step 03: Install Docker](03-Install-Docker.md)!
+
 
 # Extra Credit
 
