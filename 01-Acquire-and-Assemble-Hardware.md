@@ -23,3 +23,7 @@ If ordering from Pine64, I recommend you pay the premium for UPS shipping as the
 Assembling your server is easy and straight forward. Grab a screw driver and watch this video:
 
 [https://www.youtube.com/watch?v=_UeeklKo0Og](https://www.youtube.com/watch?v=_UeeklKo0Og)
+
+***
+
+On to [Step 02: Install Debian OS](02-Install-Debian-OS.md)!
