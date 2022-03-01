@@ -8,7 +8,7 @@ Gotify is a simple server for sending and receiving notification messages. It is
 
 * [Github](https://github.com/gotify/server)
 * [Documentation](https://gotify.net/docs/index)
-* [Docker Image](https://hub.docker.com/r/gotify/server)
+* [Docker Image](https://hub.docker.com/r/gotify/server-arm64)
 
 # Table of Contents
 
@@ -52,28 +52,32 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
 * docker-compose.yml
   ```yaml
   version: "3"
-
+  
   services:
     gotify:
-      image: gotify/server
+      image: gotify/server-arm64
       container_name: gotify
       restart: unless-stopped
+     # ports:
+     #   - "8080:80"
       volumes:
+     #   - "./data:/gotify-app"
         - "./data:/app/data"
       environment:
         - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
+     #   - TZ=${TIME_ZONE}
       networks:
         - proxy
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.gotify.rule=Host(`gotify.example.com`)"
+        - "traefik.http.routers.gotify.rule=Host(`${TRAEFIK_GOTIFY}`)"
         - "traefik.http.routers.gotify.entrypoints=https"
         - "traefik.http.routers.gotify.tls=true"
         - "traefik.http.routers.gotify.tls.certresolver=mydnschallenge"
-
+  
         # Watchtower Update
         - "com.centurylinklabs.watchtower.enable=true"
-
+  
   networks:
     proxy:
       external: true
@@ -81,7 +85,8 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
 * .env
   ```ini
   TRAEFIK_GOTIFY=gotify.example.com
-  GOTIFY_DEFAULTUSER_PASS=xxxxxxxxxxxxxxxxx
+  GOTIFY_DEFAULTUSER_PASS=typeyourpasswordhere
+  TIME_ZONE=America/New_York
   ```
 
 # Usage
@@ -116,7 +121,7 @@ Don't forget to change the GOTIFY_DEFAULTUSER_PASS after first using it.
 
 # Backup
 
-Docker volumes are globally backed up using [borg-backup](../borg-backup). 
+Docker volumes are globally backed up using [duplicati](../duplicati). 
 
 ***
 >Note: This section is a fork from [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps)
