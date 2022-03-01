@@ -10,7 +10,7 @@ services:
     ports:
       - 5005:5005
     environment:
-      - PASSWORD=${PASSWORD}
+      - PASSWORD=${FLAME_PASSWORD}
     restart: unless-stopped
     networks:
       - proxy
