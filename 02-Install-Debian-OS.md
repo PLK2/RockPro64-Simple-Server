@@ -10,7 +10,7 @@ Before we get started, a few things:
 > 
 > "Linux servers, mostly."
 
-- All computer processors run on different *architectures*: there's x86, ARM, ARM64, etc. For our purposes, all you need to know is that the RockPro64 has an **ARM64 processor**. That means that any program needs to be built specifically for this architecture, otherwise it won't work.
+- All computer processors run on different *architectures*: there's x86, ARM, ARM64, etc. For our purposes, all you need to know is that the **RockPro64 has an ARM64 processor**. That means that any program needs to be built specifically for this architecture, otherwise it won't work.
 
 Ok, let's get started.
 
