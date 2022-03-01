@@ -1,6 +1,6 @@
 # 04 - Install Applications
 
-> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64; additionally, I opted not to install some of the apps and did not include them here. I forked some of the other app folders and copied them here to this repository. You are of course welcome to reference that guide and make your own calls.
+> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64; I opted not to install some of the apps (see the [table](# BaptisteBdn Apps Table) at the bottom of this section) and did not include them here. I forked some of the other app folders and copied them here to this repository. You are of course welcome to reference that guide and make your own calls.
 
 ## Procure a domain name
 
@@ -85,7 +85,11 @@ For the others, the links below are all you need.
 * [Wiki.js]
 * Pi-Hole - *Currently, I have Pi-Hole set up on a separate Raspberry Pi 3b. This program is likely my favorite of them all: it is a network-wide ad blocker that prevents ads from ever entering your network. This saves substantial speed and data usage. I am still looking into whether or not to move this to my RockPro64 server.*
 
-**What I did and did not pull from the BaptistBdn Guide:**
+***
+
+On to [Step 05: Backup Data and Power](05-backup-data-and-power.md)!
+
+## BaptisteBdn Apps Table
 
 | BaptistBdn App | arm64 Version? | Notes |
 |:--|:--|:--|
@@ -106,6 +110,4 @@ For the others, the links below are all you need.
 | wireguard-pihole-unbound | ? | Did not use, but still considering. |
 | wordpress | yes | Copied over to this guide. |
 
-***
 
-On to [Step 05: Backup Data and Power](05-backup-data-and-power.md)!
