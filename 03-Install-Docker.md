@@ -40,4 +40,7 @@ Be sure to update the release number shown in their first command, which on thei
 
 I.E., you should change the "1.29.2" to their latest release, which as of this writing would be "v2.2.3" (and yes, **include the "v"**). Go to their GitHub page to see the latest release number: [https://github.com/docker/compose/releases](https://github.com/docker/compose/releases)
 
+***
+
+On to 
 
