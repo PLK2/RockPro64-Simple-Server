@@ -1,6 +1,6 @@
 # 01 - Acquire and Assemble the Hardware
 
-Because this guide is written for the non-technical-yet-curious, I highly recommend you acquire the *Official Hardware* listed below. In my limited experience, I learned that something as trivial as a particular brand of USB cord can make the difference between euphoria and despair. Absolve yourself of hours and hours of needless troubleshooting and purchase the following:
+Because this guide is written for the non-technical-yet-curious, I highly recommend you acquire the **Official Hardware** listed below. In my limited experience, I learned that something as trivial as a particular brand of USB cord can make the difference between euphoria and despair. Absolve yourself of hours and hours of needless troubleshooting and purchase the following:
 
 | Hardware | Notes | Link |
 |:--|:--|:--|
