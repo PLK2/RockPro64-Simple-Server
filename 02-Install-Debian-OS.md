@@ -72,7 +72,7 @@ After a while longer, you'll see a login prompt up on the monitor.
 5. Exit the session: `exit`
 
 To access the server from another computer on your network, you'll need to add a **port forward** on your router. This process is different for each router, but for mine (an Asus) it goes like this:
-1. Log into the router dashboard, which for me just means going to a web browser and typing in http://192.168.10.1/ (the IP address of my router).
+1. Log into the router dashboard, which for me just means going to a web browser and typing in `http://192.168.10.1/` (the IP address of my router).
 2. Navigate to *Advanced Settings / WAN / Port Forwarding*
 3. Click *Add Profile*
 4. Add a *Service Name* for reference, like "SuperServer22".
