@@ -80,7 +80,7 @@ Links to the following [docker-compose.yml](docker-compose.yml).
   ```
 * .env
   ```ini
-  TRAEFIK_WEBSERVER=www.example.com
+  TRAEFIK_WEBSERVER=example.com
   ```
 
 The docker-compose contains only one service using the apache httpd image.
@@ -120,7 +120,7 @@ The image is automatically updated with [watchtower](../watchtower) thanks to th
 
 # Backup
 
-Docker volumes are globally backed up using [borg-backup](../borg-backup). 
+Docker volumes are globally backed up using [duplicati](../duplicati). 
 
 ***
 >Note: This section is a fork from [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps)

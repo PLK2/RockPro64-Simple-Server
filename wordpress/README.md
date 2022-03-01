@@ -79,6 +79,8 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
       restart: unless-stopped
       volumes:
         - ./data:/var/www/html
+      environment:
+        - TZ=${TIME_ZONE}
       networks:
         - proxy
         - wordpress-net
@@ -100,9 +102,10 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
   ```
 * .env
   ```ini
-    TRAEFIK_WORDPRESS=wordpress.example.com
-    DB_ROOT_PASSWD=xxxxxxxxxxxxxxx
-    DB_PASSWD=xxxxxxxxxxxxxxx
+    TRAEFIK_WORDPRESS=example.com
+    DB_ROOT_PASSWD=typeYourPasswordHere
+    DB_PASSWD=typeAnotherPasswordHere
+    TIME_ZONE=America/New_York
   ```
 
 
@@ -122,7 +125,7 @@ Then replace the following variables in `data/wp-config.php`.
 
 * DB_PASSWORD is equivalent to DB_PASSWD in `.env`
   ```
-  define( 'DB_PASSWORD', 'xxxxxxxxxxxxxxx' );
+  define( 'DB_PASSWORD', 'typeAnotherPasswordHere' );
   ```
 
 * Change the following unique keys and salt, you can use this [wordpress salt generator](https://api.wordpress.org/secret-key/1.1/salt/) and copy past it
@@ -156,7 +159,7 @@ The image is automatically updated with [watchtower](../watchtower) thanks to th
 ACCESS_DENIED\
 # Backup
 
-Docker volumes are globally backed up using [borg-backup](../borg-backup). 
+Docker volumes are globally backed up using [duplicati](../duplicati). 
 
 ***
 >Note: This section is a fork from [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps)
