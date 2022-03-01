@@ -89,42 +89,52 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
       ports:
         - "80:80"
         - "443:443"
+        - "8080:8080"
       volumes:
         - "./traefik.yml:/traefik.yml:ro"
         - "./rules:/rules:ro"
         - "./letsencrypt:/letsencrypt"
       environment:
-        - OVH_ENDPOINT=${OVH_ENDPOINT}
-        - OVH_APPLICATION_KEY=${OVH_APPLICATION_KEY}
-        - OVH_APPLICATION_SECRET=${OVH_APPLICATION_SECRET}
-        - OVH_CONSUMER_KEY=${OVH_CONSUMER_KEY}
+        - NAMECHEAP_API_KEY=${NAMECHEAP_API_KEY}
+        - NAMECHEAP_API_USER=${NAMECHEAP_API_USER}
+        - TZ=${TIME_ZONE}
       networks:
         - proxy
       labels:
         - "traefik.enable=true"
-
+       # - "api.dashboard=true"
+       # - "api.insecure=true"
         # global redirect to https
         - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
         - "traefik.http.routers.http-catchall.entrypoints=http"
         - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
-
+  
         # middleware redirect
         - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
         - "traefik.http.middlewares.redirect-to-https.redirectscheme.permanent=true"
-
+  
         # redirect root to www
-        - "traefik.http.routers.root.rule=host(`example.com`)"
-        - "traefik.http.routers.root.entrypoints=https"
-        - "traefik.http.routers.root.middlewares=redirect-root-to-www"
-        - "traefik.http.routers.root.tls=true"
-
+       # - "traefik.http.routers.root.rule=host(`${DOMAIN}.${TLD}`)"
+       # - "traefik.http.routers.root.entrypoints=https"
+       # - "traefik.http.routers.root.middlewares=redirect-root-to-www"
+       # - "traefik.http.routers.root.tls=true"
+  
         # middleware redirect root to www
-        - "traefik.http.middlewares.redirect-root-to-www.redirectregex.regex=^https://example\\.com/(.*)"
-        - "traefik.http.middlewares.redirect-root-to-www.redirectregex.replacement=https://www.example.com/$${1}"
-
+       #  - "traefik.http.middlewares.redirect-root-to-www.redirectregex.regex=^https://${DOMAIN}\\.${TLD}/(.*)"
+       #  - "traefik.http.middlewares.redirect-root-to-www.redirectregex.replacement=https://www.${DOMAIN}.${TLD}/$${1}"
+  
+        # Traefik Dashboard
+       # - "traefik.http.routers.dashboard.entrypoints=https"
+       # - "traefik.http.routers.dashboard.tls=true"
+       # - "traefik.http.routers.dashboard.rule=Host(`traefik.${DOMAIN}.${TLD}`) && (PathPrefix(`/api/`) || PathPrefix(`/dashboard/`))"
+       # - "traefik.http.routers.dashboard.service=api@internal"
+       # - "traefik.http.routers.dashboard.middlewares=auth"
+       # - "traefik.http.middlewares.auth.basicauth.users=test:typeyourpasswordhere"
+       # - "traefik.http.routers.dashboard.tls.certresolver=mydnschallenge"
+  
         # Watchtower Update
         - "com.centurylinklabs.watchtower.enable=true"
-
+  
     socket-proxy:
       image: tecnativa/docker-socket-proxy
       container_name: traefik-socket-proxy
@@ -138,7 +148,7 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
       labels:
         # Watchtower Update
         - "com.centurylinklabs.watchtower.enable=true"
-
+  
   networks:
     proxy:
       external: true
@@ -148,12 +158,11 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
   # DOMAIN.TLD = example.com
   DOMAIN=example
   TLD=com
-
+  TIME_ZONE=America/New_York
+  
   # DNS challenge credentials - will not be the same if you are using another provider
-  OVH_ENDPOINT=xxxxxxxxxxxxxxxxxxxxxxx
-  OVH_APPLICATION_KEY=xxxxxxxxxxxxxxxxxxxxxxx
-  OVH_APPLICATION_SECRET=xxxxxxxxxxxxxxxxxxxxxxx
-  OVH_CONSUMER_KEY=xxxxxxxxxxxxxxxxxxxxxxx
+  NAMECHEAP_API_KEY=PasteYourAPIKeyHere
+  NAMECHEAP_API_USER=PasteYourNamecheapUsernameHere
   ```
 
 The docker-compose contains two services :
@@ -173,7 +182,7 @@ Instead of allowing Traefik container full access to the Docker socket file, we 
 Traefik can use an ACME provider (like Let's Encrypt) for automatic certificate generation. It will create the certificate and attempt to renew it automatically 30 days before expiration. One of the great benefit of using DNS challenges is that it will allow us to use wildcard certificates, on the other hand, it can create a security risk as it requires giving rights to Traefik to create and remove some DNS records.
 
 For the DNS challenge, you'll need a [working provider](https://doc.traefik.io/traefik/https/acme/#providers) along with the credentials allowing to create and remove DNS records, 
-If you are using OVH, you can use this [guide](https://medium.com/nephely/configure-traefik-for-the-dns-01-challenge-with-ovh-as-dns-provider-c737670c0434) to retrieve the credentials.
+If you are using Namecheap, refer to [Step 04](04-Install-Applications.md) to retrieve the credentials.
 
 
 ### Global redirect to HTTPS
@@ -195,29 +204,27 @@ This rule will match all the HTTP requests and redirect them to HTTPS. It uses t
       - "traefik.http.routers.root.middlewares=redirect-root-to-www"
       - "traefik.http.routers.root.tls=true"
 ```
-This rule will automatically redirect the root domain `example.com` to `www.example.com`. You can use the [webserver](../webserver) example to set up a website using docker. 
+This rule will automatically redirect the root domain `example.com` to `www.example.com`. You can use the [webserver](../webserver) example to set up a website using docker. Note that I have this commented out by default.
 
 # Usage
 
 ## Requirements
 - A domain, we will use example.com for this guide.
-- DNS manager, usually it goes with the provider you used for your domain. We will use OVH for the guide. List of compatible [providers](https://doc.traefik.io/traefik/https/acme/#providers).
-- Ports 80 and 443 open, check your firewall.
+- DNS manager, usually it goes with the provider you used for your domain. We will use Namecheap for the guide. List of compatible [providers](https://doc.traefik.io/traefik/https/acme/#providers).
+- Ports 80 and 443 open, check your router's firewall.
 
 
 ## Configuration
 Before using the docker-compose file, please update the following configurations.
 
-- **change the domain** : The current domain is example.com, change it to your domain. The change need to be made in `.env` and `traefik.yml` <br>
+- **change the domain and time zone** : The current domain is example.com, change it to your domain. The changes need to be made in `.env` <br>
   ```bash
     DOMAIN=example
     TLD=com
-    sed -i -e "s/example/'$DOMAIN'/g" .env 
-    sed -i -e "s/com/'$TLD'/g" .env
-    sed -i -e "s/example.com/'$DOMAIN'.'$TLD'/g" traefik.yml 
+    TIME_ZONE=America/New_York
   ```
   
-- **change the dns provider credentials** : Replace the provider name in `traefik.yml` if you are not using ovh. Replace the environment variables in `.env` and in `docker-compose.yml`. The example uses OVH but it can work with other providers, such as GoDaddy :<br>
+- **change the dns provider credentials** : Replace the provider name in `traefik.yml` if you are not using *namecheap*. Replace the environment variables in `.env` and in `docker-compose.yml`. The example uses namecheap but it can work with other providers, such as GoDaddy :<br>
   - Get the [required settings](https://go-acme.github.io/lego/dns/godaddy/) and update the `.env` file
   ```bash
     # DNS challenge credentials
@@ -278,4 +285,4 @@ The socket-proxy service is used to protect the docker socket.
 
 # Backup
 
-Docker volumes are globally backed up using [borg-backup](../borg-backup). 
+Docker volumes are globally backed up using [duplicati](../duplicati). 

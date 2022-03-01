@@ -20,7 +20,7 @@ certificatesResolvers:
       email: typeyouremailaddresshere
       storage: ./letsencrypt/acme.json
       dnsChallenge:
-        provider: name cheap
+        provider: namecheap
         delayBeforeCheck: 10
 log:
   level: INFO
