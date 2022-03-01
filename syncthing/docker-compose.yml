@@ -10,8 +10,7 @@ services:
       - TZ=${TIME_ZONE}
     volumes:
       - /raid/dockerapps/syncthing/config:/config
-      - /raid/dockerapps/syncthing/data1:/data1
-      - /raid/dockerapps/syncthing/data2:/data2
+     # - /raid/dockerapps/syncthing/data1:/data1 # a directory of your choosing
     ports:
       - 8384:8384
       - 22000:22000/tcp
@@ -26,7 +25,8 @@ services:
       - "traefik.http.routers.syncthing.entrypoints=https"
       - "traefik.http.routers.syncthing.tls=true"
       - "traefik.http.routers.syncthing.tls.certresolver=mydnschallenge"
-
+# I commented out the following lines to save for reference. 
+# They're from the original docker-compose file from hub.docker.com.
 #      - "traefik.http.routers.syncthing.service=syncthing-svc"
 #      - "traefik.http.services.syncthing-svc.loadbalancer.server.port=8384"
 
