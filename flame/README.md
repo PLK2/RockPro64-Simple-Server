@@ -50,34 +50,34 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
 
 * docker-compose.yml
   ```yaml
-version: '2.1'
+  version: '2.1'
 
-services:
-  flame:
-    image: pawelmalak/flame:multiarch
-    container_name: flame
-    volumes:
-      - "./data:/app/data"
-    #  - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration feature
-    ports:
-      - 5005:5005
-    environment:
-      - PASSWORD=${FLAME_PASSWORD}
-    restart: unless-stopped
-    networks:
-      - proxy
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.flame.rule=Host(`${TRAEFIK_FLAME}`)"
-      - "traefik.http.routers.flame.entrypoints=https"
-      - "traefik.http.routers.flame.tls=true"
-      - "traefik.http.routers.flame.tls.certresolver=mydnschallenge"
-      # Watchtower Update
-      - "com.centurylinklabs.watchtower.enable=true"
-
-networks:
-  proxy:
-    external: true
+  services:
+    flame:
+      image: pawelmalak/flame:multiarch
+      container_name: flame
+      volumes:
+        - "./data:/app/data"
+      #  - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration feature
+      ports:
+        - 5005:5005
+      environment:
+        - PASSWORD=${FLAME_PASSWORD}
+      restart: unless-stopped
+      networks:
+        - proxy
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.flame.rule=Host(`${TRAEFIK_FLAME}`)"
+        - "traefik.http.routers.flame.entrypoints=https"
+        - "traefik.http.routers.flame.tls=true"
+        - "traefik.http.routers.flame.tls.certresolver=mydnschallenge"
+        # Watchtower Update
+        - "com.centurylinklabs.watchtower.enable=true"
+  
+  networks:
+    proxy:
+      external: true
   ```
 * .env
   ```ini 
