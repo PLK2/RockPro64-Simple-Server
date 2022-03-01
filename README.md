@@ -1,6 +1,6 @@
-# RockPro64 Personal Server
+# RockPro64 Simple Server
 
-This is a plain-language, step-by-step guide for the computer novice looking to declare independence from Google and its ilk.
+This is a plain-language, step-by-step guide for the computer novice. Whether you're looking to declare independence from Google and its ilk, save on montly hosting fees, or learn a new skill.
 
 <p align="center">
 <img src="_utilities/Network-Device-Map.png" alt="map" title="map" />
