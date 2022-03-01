@@ -1,6 +1,6 @@
 # 05 - Preparing for the Future: Notes, Updates, Backup Data, Backup Power, and Upgrades
 
-Computers aren't a *set it and forget it* endeavor. They require regular maintenance and protection against future elements. You have just spent some number of hours learning about servers and linux and code, but if you don't keep it up everyday eventually you're going to 
+Computers aren't a *set it and forget it* endeavor; they require regular maintenance and TLC (like watering plants or playing piano). Prepare yourself.
 
 ## Notes
 You will thank your future self if you take detailed notes while you setup your server. Try and be as thorough as possible, even if you think you won't forget it (you probably will). 
