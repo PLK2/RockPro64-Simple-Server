@@ -78,21 +78,21 @@ For the others, the links below are all you need.
 | BaptistBdn App | arm64 Version? | Notes |
 |:--|:--|:--|
 | borg-backup | no | Replaced this with Duplicati. |
-| fail2ban | yes |  |
+| fail2ban | yes | Copied over to this guide. |
 | freshrss | ? | Did not use. |
-| gotify | yes |  |
+| gotify | yes | Copied over to this guide. |
 | jellyfin | ? | Did not use. |
 | nextcloud | yes | Ultimately decided this had too many bells and whistles, ie, things to go wrong, so I simplified with FileBrowser |
 | seafile | no | Replaced this with Syncthing. |
 | synapse-element | ? | Did not use. |
-| traefik | yes |  |
+| traefik | yes | Copied over to this guide. |
 | transmission | ? | Did not use. |
 | trilium | yes | I didn't like the UI so I opted for Wiki.js instead. |
 | vaultwarden | ? | Did not use, but still considering. |
-| watchtower | yes |  |
+| watchtower | yes | Copied over to this guide. |
 | webserver | yes | Did not use, but still considering. |
 | wireguard-pihole-unbound | ? | Did not use, but still considering. |
-| wordpress | yes |  |
+| wordpress | yes | Copied over to this guide. |
 
 ***
 
