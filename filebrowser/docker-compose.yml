@@ -3,7 +3,7 @@ version: "3"
 services:
   filebrowser:
     image: hurlenko/filebrowser
-   # user: "bob:root"?
+   # user: "bob:root"
     container_name: filebrowser
     ports:
       - 8080

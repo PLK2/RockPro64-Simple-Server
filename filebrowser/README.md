@@ -1,14 +1,14 @@
 # About
 
 <p align="center">
-<img src="/_utilities/flame.png" alt="flame" title="flame" />
+<img src="/_utilities/filebrowser.png" alt="filebrowser" title="filebrowser" />
 </p>
 
-Flame is a self-hosted start page for your server. It is easy to setup and use. With built-in editors, it allows you to setup your own application hub in no time - no file editing necessary. I use it to manage not only the RockPro64 server but other devices on my network along with various other resources.
+filebrowser provides a file managing interface within a specified directory and it can be used to upload, delete, preview, rename and edit your files. It allows the creation of multiple users and each user can have its own directory. It can be used as a standalone app or as a middleware.
 
-* [Github](https://github.com/pawelmalak/flame)
-* [Documentation](https://github.com/pawelmalak/flame)
-* [Docker Image](https://hub.docker.com/r/pawelmalak/flame)
+* [Github](https://github.com/filebrowser/filebrowser)
+* [Documentation](https://filebrowser.org/)
+* [Docker Image](https://hub.docker.com/r/hurlenko/filebrowser)
 
 # Table of Contents
 
@@ -39,7 +39,7 @@ Flame is a self-hosted start page for your server. It is easy to setup and use. 
 
 - `.env` - a file containing all the environment variables used in the docker-compose.yml
 - `docker-compose.yml` - a docker-compose file, use to configure your application’s services
-- `data/` - a directory used to store flame's data
+- `data/` - a directory used to store filebrowser's data
 
 Please make sure that all the files and directories are present.
 
@@ -50,28 +50,32 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
 
 * docker-compose.yml
   ```yaml
-  version: '2.1'
-
+  version: "3"
+  
   services:
-    flame:
-      image: pawelmalak/flame:multiarch
-      container_name: flame
-      volumes:
-        - "./data:/app/data"
-      #  - /var/run/docker.sock:/var/run/docker.sock # optional but required for Docker integration feature
+    filebrowser:
+      image: hurlenko/filebrowser
+     # user: "bob:root"
+      container_name: filebrowser
       ports:
-        - 5005:5005
+        - 8080
+      volumes:
+        - /raid/dockerapps/filebrowser/data:/data
+        - /raid/dockerapps/filebrowser:/config
       environment:
-        - PASSWORD=${FLAME_PASSWORD}
+        - files.example.com=/filebrowser
       restart: unless-stopped
       networks:
         - proxy
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.flame.rule=Host(`${TRAEFIK_FLAME}`)"
-        - "traefik.http.routers.flame.entrypoints=https"
-        - "traefik.http.routers.flame.tls=true"
-        - "traefik.http.routers.flame.tls.certresolver=mydnschallenge"
+        - "traefik.http.routers.filebrowser.rule=Host(`${TRAEFIK_FILEBROWSER}`)"
+        - "traefik.http.routers.filebrowswer.entrypoints=https"
+        - "traefik.http.routers.filebrowser.tls=true"
+        - "traefik.http.routers.filebrowser.tls.certresolver=mydnschallenge"
+       # - "traefik.http.routers.filebrowser.service=filebrowser"
+       # - "traefik.http.services.filebrowser.loadbalancer.server.port=8080"
+  
         # Watchtower Update
         - "com.centurylinklabs.watchtower.enable=true"
   
@@ -81,15 +85,14 @@ Links to the following [docker-compose.yml](docker-compose.yml) and the correspo
   ```
 * .env
   ```ini 
-  TRAEFIK_FLAME=flame.example.com 
-  PASSWORD=typeyourownpasswordhere     
+  TRAEFIK_FILEBROWSER=files.example.com    
   ```
 
 # Usage
 
 ## Requirements
 - [Traefik up and running](../traefik).
-- A subdomain of your choice, this example uses `flame`.
+- A subdomain of your choice, this example uses `files`.
     - You should be able to create a subdomain with your DNS provider, use a `A record` with the same IP address as your root domain.
 
 ## Configuration
@@ -100,7 +103,7 @@ Replace the environment variables in `.env` with your own, then run :
 sudo docker-compose up -d
 ```
 
-You should then be able to access the flame web-ui with the FLAME_PASSWORD.
+You should then be able to access the filebrowser web-ui and setup a new user account.
 
 
 # Update
@@ -113,6 +116,7 @@ The image is automatically updated with [watchtower](../watchtower) thanks to th
 ```
 
 # Security
+
 Don't be reckless.
 
 
