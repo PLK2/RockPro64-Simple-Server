@@ -286,3 +286,6 @@ The socket-proxy service is used to protect the docker socket.
 # Backup
 
 Docker volumes are globally backed up using [duplicati](../duplicati). 
+
+***
+>Note: This section is a fork from [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps)

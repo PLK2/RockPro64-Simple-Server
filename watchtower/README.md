@@ -111,3 +111,6 @@ Automatically upgrading open-source images can be a huge security risk. The safe
 # Backup
 
 Backup are not required.
+
+***
+>Note: This section is a fork from [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps)

@@ -121,3 +121,6 @@ The image is automatically updated with [watchtower](../watchtower) thanks to th
 # Backup
 
 Docker volumes are globally backed up using [borg-backup](../borg-backup). 
+
+***
+>Note: This section is a fork from [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps)
