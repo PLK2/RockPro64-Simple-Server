@@ -94,3 +94,6 @@ For the others, the links below are all you need.
 | wireguard-pihole-unbound | ? | Did not use, but still considering. |
 | wordpress | yes |  |
 
+***
+
+On to [Step 05: Backup Data and Power](05-backup-data-and-power.md)!
