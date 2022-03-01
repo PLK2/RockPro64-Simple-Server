@@ -117,7 +117,7 @@ The image is automatically updated with [watchtower](../watchtower) thanks to th
 
 # Security
 
-Don't be reckless.
+While the webui utilizes https so data transmission is encrypted, take note that the files sit unencrypted on your server drives.
 
 
 # Backup
