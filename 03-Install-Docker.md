@@ -42,5 +42,5 @@ I.E., you should change the "1.29.2" to their latest release, which as of this w
 
 ***
 
-On to 
+On to [Step 04: Install the Applications](04-Install-Applications.md)!
 
