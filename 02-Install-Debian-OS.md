@@ -1,4 +1,4 @@
-# 02 - Install Debian OS
+# 02 - Install Debian OS and Setup RAID
 *Set aside a couple hours.*
 
 Before we get started, a few things:
