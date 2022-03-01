@@ -1,33 +1,45 @@
 # 04 - Install Applications
 
-This guide draws heavily from another: [https://github.com/BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). You should read through that now to familiarize yourself with the applications, their uses, and general setup. 
+> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64; additionally, I opted not to install some of the apps and did not include them here. I forked some of the other app folders and copied them here to this repository. You are of course welcome to reference that guide and make your own calls.
 
-Go ahead and copy that entire GitHub repository over to your server so you have all the base files and folders ready to go. 
+## Procure a domain name
 
-SSH into your server as "bob" then navigate to */raid*:
-`cd /raid`
+Your server needs a domain name; you can procure one from a registrar. I'm using **Namecheap.com**, but you can use whomever you'd like; just know that a different registrar will handle things slightly differently so be prepared to translate as needed. You can also do this for free using [Duck DNS](https://github.com/linuxserver/docker-duckdns) but I haven't gone that route.
 
-While in that directory, clone the GitHub repository. We want to avoid saving anything else on the microSD (that should only have the Debian OS and Docker installed on it). Our RAID should have  all our application files and data, so get used to saving things in the */raid* directory:
-`git clone https://github.com/BaptisteBdn/docker-selfhosted-apps.git`
-
-> Note: A number of programs referenced in the BaptisteBdn guide do not work on a RockPro64. I had to find workarounds or alternative programs, which follow below. You are certainly welcome to explore more within that guide.
-
-After you've copied everything over, what I'll add here is the exact *.yml* and *.env* files that work for my RockPro64 server, so you can simply copy/paste, modify some of the variables for your specific circumstance, and you'll be on your way.
-
-## But first, buy a domain name
-
-Your server needs a domain name; you can procure one from a registrar. I'm using Namecheap.com, but you can use whomever you'd like; just know that a different registrar will handle things slightly differently so be prepared to translate as needed.
-
-This guide will make reference to "example.com". Whenever you see that, just replace it with your own domain. To be clear, you can use any domain you'd like: *2h9d234rg87.com*, *neontattoo.net*, *purplerain.paris*, whatever. Just know that we're going to be assigning *subdomains* to each of our apps (e.g., for the *ArchiveBox* application, we might create an *archive* subdomain, which would look like *archive.purplerain.paris*).
+This guide will make reference to "example.com". Whenever you see that, just replace it with your own domain. To be clear, you can use any domain you'd like: *2h9d234rg87.com*, *neontattoo.net*, *purplerain.paris*, whatever. Just know that we're going to be assigning **subdomains** to each of our apps (e.g., for the *ArchiveBox* application, we might create an *archive* subdomain, which would look like *archive.purplerain.paris*).
 
 Once registered, it takes about a day for your domain to propagate around the world.
 
-For Traefik (one of the apps you'll soon be installing), we're going to need an *API key* from Namecheap (or your specific registrar). Log into Namecheap account, go to *Profile*, select *Tools*, then under the *Business & Dev Tools* section click the *Manage* button. Turn on API access and the API key will appear (a long string of numbers and letters). 
+For Traefik (one of the apps you'll soon be installing), we're going to need an *API key* from Namecheap (or your specific registrar). 
 
-Next, add your *public IP address* to Namecheap's *Whitelisted IPs* below the API key. You can do that by clicking the *Edit* button.
+**To get your API Key:**
+1. Log into Namecheap account.
+2. Go to *Profile*
+3. Select *Tools*
+4. Under the *Business & Dev Tools* section click the *Manage* button. 
+5. Turn on API access and the API key will appear (a long string of numbers and letters). 
+6. Add your *public IP address* to Namecheap's *Whitelisted IPs* below the API key. You can do that by clicking the *Edit* button.
 
-Now go to your *Domain List* and click *Manage* next to your domain. Select *Advanced DNS*. Under the *Host Records* section, this is where you'll be adding your subdomains. To do that, click *Add New Record*, select *A Record* from the dropdown menu, replace *Host* with your subdomain, then replace *IP address* with your public IP address. And that's it.
+**To create a subdomain:**
+1. Log into Namecheap account.
+2. Go to your *Domain List*.
+3. Click *Manage* next to your domain. 
+4. Select *Advanced DNS*. 
+5. Under the *Host Records* section, this is where you'll be adding your subdomains. Click *Add New Record*.
+6. Select *A Record* from the dropdown menu.
+7. Replace *Host* with your subdomain.
+8. Replace *IP address* with your public IP address.
+9. Click the _checkmark_ to save.
 
+
+## Clone the Repository
+
+Start by _cloning_ (aka, copying) the **RockPro64 Simple Server** GitHub _repository_ (aka, all the files and folders) over to your server.
+
+1. SSH into your server as "bob" then navigate to */raid*: `cd /raid`
+2. While in that directory, clone the  GitHub repository. We want to avoid saving anything else on the microSD (that should only have Debian OS and Docker installed on it). Our RAID should have all our application files and data, so get used to saving things in the */raid* directory: `git clone https://github.com/PLK2/RockPro64-Simple-Server.git`
+3. Verify that all worked: `ls`
+4. If you'd like, you can rename the director to "dockerapps" or something else more manageable: `sudo mv -r RockPro64-Simple-Server dockerapps`
 
 ## Required Apps
 These applications will allow your server to run smoothly and securely. I recommend you start with these.
@@ -90,7 +102,7 @@ For the others, the links below are all you need.
 | trilium | yes | I didn't like the UI so I opted for Wiki.js instead. |
 | vaultwarden | ? | Did not use, but still considering. |
 | watchtower | yes | Copied over to this guide. |
-| webserver | yes | Did not use, but still considering. |
+| webserver | yes | Copied over to this guide. |
 | wireguard-pihole-unbound | ? | Did not use, but still considering. |
 | wordpress | yes | Copied over to this guide. |
 
