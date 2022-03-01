@@ -1,7 +1,10 @@
 # Appendix III - Want to Add an App to your Server? First Consider a Separate Board.
 
-It is tempting to think about having a single, do-it-all server. But it considering the pros and cons, there are some reasons to use a separate RockPro64 (or Raspberry Pi, etc).
+It is tempting to persue a single, do-it-all server, but there are some good reasons to consider using separate boards, like:
+- Decentralization: power, errors, etc.
+- Experimentation
+- If it ain't broke don't fix it.
+- Focus, simplicity.
+- Some applications are made specifically for the Raspberry Pi and haven't been built for the RockPro.
 
-The more buttons and widgets and nobs, the more potential for error. 
-
-Some applications are made for the raspberry pi and haven't been built for the RockPro. Rather than find out the hardware, it might be worth the extra 5 watts per day to run a separate SBC.
+More thoughts on all this forthcoming...
