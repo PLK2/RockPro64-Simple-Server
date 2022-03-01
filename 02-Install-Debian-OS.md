@@ -18,100 +18,78 @@ Ok, let's get started.
 ## Step 1. Download Debian
 *Allocate 5 minutes.*
 
-Steps 1 and 2 are covered at the link below, but I'm going to walk through it a bit more here. [https://wiki.pine64.org/index.php/ROCKPro64_Software_Release](https://wiki.pine64.org/index.php/ROCKPro64_Software_Release)
+> Note: Steps 1 and 2 are covered by [Pin64 here](https://wiki.pine64.org/index.php/ROCKPro64_Software_Release), but I'm going to walk through it with a bit more detail here.
 
-Debian is the operating system we will use for our server.
+**Debian** is the **operating system** we will use for our server. We're going to make it **headless** (meaning there's no desktop interface, only a command-line accessed from another computer via SSH), but to make the install process easier we're going to attach a temporary head to it (a monitor) and keyboard.
 
-Go to Debian's download page:
+1. On your existing computer, go to Debian's download page:
 [https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/netboot/SD-card-images/](https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/netboot/SD-card-images/)
+2. Download and save these files to your *Downloads* folder:
+  - `firmware.rockpro64-rk3399.img.gz`
+  - `partition.img.gz`
+3. Open Terminal on your Mac (or equivalent).
+4. In Terminal, navigate to your Downloads folder: `cd Downloads`
+5. We're going to **verify** the files just downloaded (to make sure they are complete and also not malicious). In Terminal within your Downloads directory, run: `shasum -a 256 firmware.rockpro64-rk3399.img.gz' and 'shasum -a 256 partition.img.gz`.
+6. Compare the outputs of both of those commands (a long string of numbers and letters) to the equivalent strings for each file shown here: [https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/SHA256SUMS](https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/SHA256SUMS) It should match exactly.
+7. Back in Terminal, combine the downloaded files into a single disk image (an "image" is nerd-speak for "the file you double click on to install something"): `gzcat firmware.rockpro64-rk3399.img.gz partition.img.gz > complete_image.img`
 
-Download and save these files to your Downloads folder:
-1. `firmware.rockpro64-rk3399.img.gz`
-2. `partition.img.gz`
-
-Open Terminal on your Mac.
-
-In Terminal, navigate to your Downloads folder:
-`cd Downloads`
-
-In Terminal, combine the downloaded files into a single disk image:
-`gzcat firmware.rockpro64-rk3399.img.gz partition.img.gz > complete_image.img`
-
-
-Verifying a download does two things:
-1. It ensures that you're downloading legitimate software from the developer and not something altered by bad actors.
-2. It ensures that you actually downloaded every bite of information. Sometimes, errors can occur during the download process which can mess up your installation.
+Now that we have the Debian image, we're going to flash it (aka, burn it; aka, write it) to our microSD card.
 
 
 ## Step 2. Flash to microSD
 *Allocate 5 minutes.*
 
-Download, install, and open balenaEtcher.
-[https://www.balena.io/etcher/](https://www.balena.io/etcher/)
+1. On your existing computer, download, install, and open balenaEtcher: [https://www.balena.io/etcher/](https://www.balena.io/etcher/)
+2. Insert the microSD card into your existing computer.
+3. In balenaEtcher, click *Select image* and select your file `complete_image.img`.
+4. Click *Select drive* and select your microSD card.
+5. Click *Flash!*, input your password if prompted, then a few seconds later your microSD is ready.
 
-Insert your microSD card.
-
-Click *Select image* and select your file `complete_image.img`.
-
-Click *Select drive* and select your microSD card.
-
-Click *Flash!*, input your password if prompted, then a few seconds later your microSD is ready.
-
-Eject your microSD and insert it into your RockPro64.
-
-
-
+Eject your microSD and insert it into your powered-off RockPro64.
 
 ## Step 3. Install Debian on the RockPro64
 *Allocate 30 minutes*
 
-Connect a monitor and keyboard to your RockPro64 (this is only temporary during the installation process) then power on.
+Connect a monitor and keyboard to your RockPro64 (this is only temporary during the installation process) then plug in the power cord. You should see some little lights turn on on the board. *It's alive!*
 
-The installation should automatically begin. You'll see things happening on your monitor. Wait a bit and eventually you'll be prompted for input.
-1. The *hostname* is how your server will be identified by your network router. For this guide, we'll use the hostname "superserver".
+The installation should automatically begin. You'll see things happening on your monitor. Wait a bit and eventually you'll be prompted for the following  input:
+
+1. The **hostname** is how your server will be identified by your network router. For this guide, we'll use the hostname "superserver".
 2. For *domain*, leave blank.
 3. The installation process will set up two different *users*. The *root* user is all-powerful and has access to everything.  When prompted, create a password for this user.
 4. The second user (for this guide we'll use username "bob") will need a separate password.
+5. Once you arrive at the **Detecting disks / partitioning** portion of the installation, select your microSD (which will show up as mmcblk1 or something).
+6. Select **Guided: Use the largest continuous free space**, then select your microSD.
+7. You'll be asked *Write the changes to disk?* Confirm all looks good then select "yes" (use the tab key then hit return).
+8. Next you'll be asked what exactly to install. Do not include a desktop or web server (select or unselect with the spacebar, and move up and down with the arrow keys) when prompted. **The only thing you need to select is SSH and standard utilities.**
 
-Once you arrive at the *Detecting disks / partitioning* portion of the installation, select your microSD (which will show up as mlcmmd or something).
+After a while longer, you'll see a login prompt up on the monitor.
 
-Select *Guided: Use the largest continuous free space*, then select your microSD.
+1. Type in "root" for your user, then type in your password (note that your password keystrokes will not show up on screen).
+2. Install any updates: `apt update && apt upgrade`
+3. Install sudo (don't worry about it): `apt install sudo`
+4. Give user "bob" sudo privileges: `usermod -aG sudo bob`
+5. Exit the session: `exit`
 
-You'll be asked *Write the changes to disk?* Confirm all looks ok then select "yes" (use the tab key then hit return).
-
-Next you'll be asked what exactly to install. Don't include a desktop or web server (select or unselect with the spacebar, and move up and down with the arrow keys) when prompted. **The only thing you need to select is SSH and standard utilities.**
-
-*Note: The root user does not have SSH enabled by default. Leave it that way for safety, but to do it temporarily: [[202202011231 How to give root SSH access]]*
-
-After a while longer you'll see a login prompt.
-
-Type in "root" for your user, then type in your password (note that your password keystrokes will not show up on screen).
-
-First things first, run this command to install any updates: 
-`apt update && apt upgrade`
-
-Then: 
-`apt install sudo`
-
-Give user "bob" sudo privileges. 
-[[202201291714 Give a user sudo privileges]]
-
-Exit the session:
-`exit`
-
-On another computer, open Terminal and SSH into your server in as "bob".
-
-If everything worked, you can unplug the keyboard and monitor from the RockPro64. Congratulations: you now have a headless server.
-
-To access it from another computer on your network, you'll need to *port forward* to it from your router. This process is different for each router, but for mine (an Asus) it goes like this:
-1. Log into the dashboard, which for me just means going to a web browser and typing in http://192.168.10.1/ (the IP address of my router).
-2. Advanced Settings / WAN / Port Forwarding
+To access the server from another computer on your network, you'll need to add a **port forward** on your router. This process is different for each router, but for mine (an Asus) it goes like this:
+1. Log into the router dashboard, which for me just means going to a web browser and typing in http://192.168.10.1/ (the IP address of my router).
+2. Navigate to *Advanced Settings / WAN / Port Forwarding*
 3. Click *Add Profile*
-4. Add a *Service Name* for reference, like "ServerPort22".
+4. Add a *Service Name* for reference, like "SuperServer22".
 5. Set *Protocol* to TCP.
 6. Set *External Port* to 22.
 7. Then select the *Internal IP address* of your server.
-8. Then click *Ok* and you're done.
+8. Then click *Ok* and you're set.
+
+Now open Terminal and SSH into your server as "bob": `ssh bob@superserver.local` (If "superserver.local" doesn't work, you can replace that with the IP address of your server). If SSH was successful, you can unplug the keyboard and monitor from the RockPro64. Congratulations: you have a headless server.
+
+> Note: The root user does not have SSH enabled by default (this is for security purposes). For convenience, you'll want to enable that temporarily while getting everything set up. Then once you're done you can turn it off again. Follow these steps:
+> 1. With your keyboard and monitor still plugged into your RockPro64, login as "root" user.
+> 2. Execute: `nano /etc/ssh/sshd_config`
+> 3. Alter the line "#PermitRootLogin" by removing the "#" and changing the option to "yes".
+> 4. Write the changes then exit: `Control-O` then `Control-X`
+> 5. Apply the changes: `systemctl restart sshd`
+> 6. Now from another computer see if you can SSH into your server as root.
 
 ## Step 4. Verify it works
 
