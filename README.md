@@ -10,12 +10,12 @@ This is a plain-language, step-by-step guide for the computer novice looking to 
 ## Who is this guide for?
 This guide is intended for the novice coder, the non-technical-yet-curious, or the Linux greenhorn; those of us looking for an escape route from Big Tech with better privacy and personal sovereignty. If you are one of those people, this guide is for you. It will hold your hand at each step while you spin up your own server with the other.
 
-For more on the Principles behind this guide, see Appendix I.
+For more on the Principles behind this guide, see [Appendix I](Appendix-i-Principles.md).
 
 While only minimal computer skills are required to get through this guide, it's best if you already know the following (or acquire the skills elsewhere):
 
 1. How to access and adjust your home router settings.
-2. Good password management is a critical best practice, especially when you're taking full custody of your information.
+2. Good password management. This is a critical best practice, especially when you're taking full custody and responsibility for your data.
 3. Willingness to work with tedious text details and patience to deal with errors that are frustratingly stupid in hindsight.
 
 ## Project Background
