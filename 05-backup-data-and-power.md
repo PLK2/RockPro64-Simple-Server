@@ -9,7 +9,7 @@ Consider making a record of the following:
 
 - Any deviations made from this guide
 - Draw a "map" of your folders and files.
-- Draw a "map" of your physical devices (like my drawing).
+- Draw a "map" of your physical devices (like my [drawing](README.md)).
 - Your router settings and IP addresses.
 - Organize your passwords (I use 1Password).
 
