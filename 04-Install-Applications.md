@@ -1,6 +1,6 @@
 # 04 - Install Applications
 
-> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64; I opted not to install some of the apps (see the [table](##BaptisteBdn-Apps-Table) at the bottom of this section) and did not include them here. I forked some of the other app folders and copied them here to this repository. You are of course welcome to reference that guide and make your own calls.
+> Note: This RockPro64 Simple Server guide drew heavily from another guide on GitHub: [BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps). I went through BaptisteBdn's guide and modified it to make things work for the RockPro64; I opted not to install some of the apps (see the [table](#BaptisteBdn-Apps-Table) at the bottom of this section) and did not include them here. I forked some of the other app folders and copied them here to this repository. You are of course welcome to reference that guide and make your own calls.
 
 ## Procure a domain name
 
