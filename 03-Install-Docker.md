@@ -2,7 +2,7 @@
 *Allocate 30 minutes*
 
 ## What? And Why?
-Docker is a program that helps you manage and organize other programs.
+**Docker is a program that helps you manage and organize other programs.**
 
 Docker allows you to set up system-wide and network-wide configurations once and then apply those to all your containerized apps. This saves you from the hassle of having to do the same thing repeatedly for each app. It also helps with consistency: setup and upgrades can be applied across the board.
 
