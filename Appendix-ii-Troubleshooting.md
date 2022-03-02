@@ -14,4 +14,4 @@ Here are a few issues and error messages I ran into while setting up the RockPro
 
 ## Apps suddenly break after installing a new program
 - Check Traefik logs and read error messages: `sudo docker logs traefik`
-- Installed Flame, then Gotify stopped working. Turns out it's because I hadn't changed the "router" name in the "Labels" section--I still had it written as "gotify" so I changed it to "flame" and that fixed it.
+- E.g., I installed Flame, then Gotify stopped working. Turns out it's because I hadn't changed the "router" name in the "Labels" section--I still had it written as "gotify" so I changed it to "flame" and that fixed it.
