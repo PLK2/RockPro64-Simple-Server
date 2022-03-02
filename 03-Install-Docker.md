@@ -1,5 +1,8 @@
 # 03 - Install Docker
-*Allocate 30 minutes*
+
+<p align="center">
+<img src="/_utilities/docker.png" alt="docker" title="docker" />
+</p>
 
 ## What? And Why?
 **Docker is a program that helps you manage and organize other programs.**
@@ -11,6 +14,8 @@ Docker Compose provides an easy format for configuring each of your apps. A ".ym
 You'll appreciate it more once you see it in action so let's get started.
 
 ## Install Docker Engine
+
+*Allocate 15 minutes*
 
 To install **Docker Engine**, follow the instructions at Docker's website. There are two sections to follow: "Setup the repository" and "Install Docker Engine." Be sure to install the "**Debian**" version.
 
@@ -31,6 +36,8 @@ sudo apt-get install \
 `sudo apt-get install ca-certificates curl gnupg lsb-release`
 
 ## Install Docker Compose
+
+*Allocate 10 minutes*
 
 To install **Docker Compose**, follow the instructions at Docker's website for the **Linux** version: 
 [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
