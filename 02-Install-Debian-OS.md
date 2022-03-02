@@ -179,7 +179,7 @@ Now the RAID is ready--almost. We have to **mount** it (ie, tell Debian we can u
 
 > Note: The following references this guide for how to mount and automount your RAID: [https://linoxide.com/raid-mirror-disks-in-linux/](https://linoxide.com/raid-mirror-disks-in-linux/)
 
-1. Make a new directory upon which we'll mount the RAID. This we'll use */raid*: `mkdir /raid`
+1. Make a new directory upon which we'll mount the RAID. We'll use */raid*: `mkdir /raid`
 2. Mount the RAID disk *md0* to the new directory */raid*: `mount /dev/md0 /raid`
   - Et voila! We can create and save files onto our RAID. Try it with this: `touch /raid/file1.txt`
 3. Modify the `/etc/fstab` file so that the RAID automatically mounts after a reboot: `echo "/dev/md0 /raid btrfs defaults 0 0" >> /etc/fstab`
