@@ -1,5 +1,8 @@
 # 02 - Install Debian OS and Setup RAID
-*Set aside a couple hours.*
+
+<p align="center">
+<img src="/_utilities/debian.png" alt="debian" title="debian" />
+</p>
 
 Before we get started, a few things:
 
@@ -12,7 +15,9 @@ Before we get started, a few things:
 
 - All computer processors run on different *architectures*: there's x86, ARM, ARM64, etc. For our purposes, all you need to know is that the **RockPro64 has an ARM64 processor**. That means that any program needs to be built specifically for this architecture, otherwise it won't work.
 
-Ok, let's get started.
+Ok, let's get started. 
+
+*Set aside a couple hours.*
 
 
 ## Step 1. Download Debian
