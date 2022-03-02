@@ -1,6 +1,6 @@
 # RockPro64 Simple Server
 
-**This is a plain-language, step-by-step guide for the computer novice wanting their own cloud**, looking to declare independence from Google and its ilk, save on monthly hosting fees, or just learn a new skill.
+**This is a plain-language, step-by-step guide for the computer novice wanting to build their own cloud**, looking to declare independence from Google and its ilk, save on monthly hosting fees, or just learn a new skill.
 
 <p align="center">
 <img src="_utilities/Network-Device-Map.png" alt="map" title="map" />
