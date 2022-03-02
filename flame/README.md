@@ -4,7 +4,7 @@
 <img src="/_utilities/flame.png" alt="flame" title="flame" />
 </p>
 
-Flame is a self-hosted start page for your server. It is easy to setup and use. With built-in editors, it allows you to setup your own application hub in no time - no file editing necessary. I use it to manage not only the RockPro64 server but other devices on my network along with various other resources.
+Flame is a self-hosted start page for your server. It is easy to setup and use. With built-in editors, it allows you to setup your own application hub in no time - no file editing necessary. I use it to manage not only the RockPro64 server but all other devices on my network (bitcoin nodes and miners, IPFS node, Raspberry Pis) along with various other resources (guides, server maintenance, bookmarks).
 
 * [Github](https://github.com/pawelmalak/flame)
 * [Documentation](https://github.com/pawelmalak/flame)
