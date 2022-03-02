@@ -33,3 +33,6 @@ Follow the steps below. Once you arrive at Step 04, you will reference the above
 * [Appendix I: Principles](Appendix-i-Principles.md)
 * [Appendix II: Troubleshooting](Appendix-ii-Troubleshooting.md)
 * [Appendix III: Adding More Apps and Devices](Appendix-iii-Adding-Apps-or-Servers.md)
+
+***
+*The framework and much of the content for the Applications section of this guide was drawn from [https://github.com/BaptisteBdn/docker-selfhosted-apps](https://github.com/BaptisteBdn/docker-selfhosted-apps).*
