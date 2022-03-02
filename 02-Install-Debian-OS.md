@@ -108,7 +108,7 @@ Now open Terminal and SSH into your server as "bob": `ssh bob@superserver.local`
 
 Repeat those steps for your second disk `/dev/sdb`.
 
-Now it's time to set up the RAID.
+Now it's time to **set up the RAID**.
 > Note: the following comes from a portion of this guide: [https://unix.stackexchange.com/questions/544841/my-raid-1-always-renames-itself-to-dev-md127-after-rebooting-debian-10](https://unix.stackexchange.com/questions/544841/my-raid-1-always-renames-itself-to-dev-md127-after-rebooting-debian-10)
 
 1. Create the RAID (we will identify this new RAID drive as /dev/md0): `sudo mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/sda /dev/sdb`
@@ -139,7 +139,7 @@ MAILADDR root
 5. Exit: `Control-X`
 
 
-Now we need to add a reference to the new RAID drive inside the `mdadm.conf` file you just edited.
+Now we need to **add a reference** to the new RAID drive inside the `mdadm.conf` file you just edited.
 
 1. Switch user to "root": `sudo su - root`
 2. Then as the root user, write the details of your RAID: `sudo mdadm --detail --scan >> /etc/mdadm/mdadm.conf`
