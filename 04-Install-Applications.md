@@ -43,7 +43,7 @@ Start by _cloning_ (aka, copying) the **RockPro64 Simple Server** GitHub _reposi
 
 
 ## Install the Apps
-We are finally at the point where we can start installing some apps! Below are the steps, using Duplicati as an example:
+We are finally at the point where we can start installing some apps! Below are the general steps you'll need to go through for each application (Duplicati is used in this example):
 
 1. SSH into the server as bob: `ssh bob@superserver.local`
 2. Navigate to the directory: `cd /raid/dockerapps/duplicati`
