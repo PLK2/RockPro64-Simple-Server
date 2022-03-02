@@ -29,7 +29,7 @@ Ok, let's get started.
   - `partition.img.gz`
 3. Open Terminal on your Mac (or equivalent).
 4. In Terminal, navigate to your Downloads folder: `cd Downloads`
-5. We're going to **verify** the files just downloaded (to make sure they are complete and also not malicious). In Terminal within your Downloads directory, run: `shasum -a 256 firmware.rockpro64-rk3399.img.gz` then `shasum -a 256 partition.img.gz`.
+5. We're going to **verify** the files just downloaded (to make sure they are complete and also not malicious). In Terminal within your Downloads directory, run: `shasum -a 256 firmware.rockpro64-rk3399.img.gz` followed by `shasum -a 256 partition.img.gz`.
 6. Compare the outputs of both of those commands (a long string of numbers and letters) to the equivalent strings for each file listed in here: [https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/SHA256SUMS](https://deb.debian.org/debian/dists/bullseye/main/installer-arm64/current/images/SHA256SUMS) It should match exactly.
 7. Back in Terminal, combine the downloaded files into a single disk image (an "image" is nerd-speak for "the file you double click on to install something"): `gzcat firmware.rockpro64-rk3399.img.gz partition.img.gz > complete_image.img`
 
