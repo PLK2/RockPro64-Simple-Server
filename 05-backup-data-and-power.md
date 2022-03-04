@@ -37,3 +37,5 @@ Some upgrades to look into:
 1. Docker Swarm
 2. Additional Security
 3. More Applications and Use Cases
+  - OpenStreetMap server
+  - Portainer
