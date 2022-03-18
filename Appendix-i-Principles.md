@@ -1,6 +1,6 @@
 # Appendix I - Principles for the Simple Server
 
-This server will need to function both now and in the future. Spinning it up once is half the work; the other half is keeping it up and getting it back up when it goes does. If you’re like me—someone who doesn’t work with computers everyday—there’s a good chance you’ll forget the tedious details if not some big ideas. By designing a server that works for the **future you**, it is more likely to be kept up for the long term.
+This server will need to function both now and in the future. Spinning it up once is half the work; the other half is keeping it up and getting it back up when it goes down. If you’re like me—someone who doesn’t work with computers everyday—there’s a good chance you’ll forget the tedious details if not some big ideas. By designing a server that works for the **future you**, it is more likely to be kept up for the long term.
 This is not to say don't experiment with your server. You should. But do it with the principles below in mind.
 
 ___
