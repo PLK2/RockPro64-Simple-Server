@@ -88,7 +88,7 @@ With that said, the forwarding process is different for each router, but for min
 7. Then select the *Internal IP address* of your server.
 8. Then click *Ok* and you're set.
 
-Now open Terminal and SSH into your server as "bob": `ssh bob@superserver.local` (If "superserver.local" doesn't work, you can replace that with the IP address of your server). If SSH was successful, you can unplug the keyboard and monitor from the RockPro64. Congratulations: you have a headless server.
+Now open Terminal and SSH into your server as "bob": `ssh bob@superserver.local` (If "superserver.local" doesn't work, you can replace that with the IP address of your server which you can obtain by executing this command: `ip address`.). If SSH was successful, you can unplug the keyboard and monitor from the RockPro64. Congratulations: you have a headless server.
 
 > Note: The root user does not have SSH enabled by default (this is for security purposes). For convenience, you'll want to enable that temporarily while getting everything set up. Then once you're done you can turn it off again. Follow these steps:
 > 1. With your keyboard and monitor still plugged into your RockPro64, login as "root" user.
