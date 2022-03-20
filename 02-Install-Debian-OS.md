@@ -72,7 +72,7 @@ After a while longer, you'll see a login prompt up on the monitor.
 
 1. Type in "root" for your user, then type in your password (note that your password keystrokes will not show up on screen).
 2. Install any updates: `apt update && apt upgrade`
-3. Install sudo (don't worry about it): `apt install sudo`
+3. Install sudo (sudo is... eh, don't worry about it): `apt install sudo`
 4. Give user "bob" sudo privileges: `usermod -aG sudo bob`
 5. Exit the session: `exit`
 
