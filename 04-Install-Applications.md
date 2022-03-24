@@ -39,7 +39,7 @@ Start by _cloning_ (aka, copying) the **RockPro64 Simple Server** GitHub _reposi
 1. SSH into your server as "bob" then navigate to */raid*: `cd /raid`
 2. While in that directory, clone the  GitHub repository. (A this point we want to avoid saving anything else onto the microSD--that should only have Debian OS and Docker installed on it). Our RAID should have all our application files and data, so get used to saving things in the */raid* directory: `git clone https://github.com/PLK2/RockPro64-Simple-Server.git`
 3. Verify that all worked: `ls`
-4. If you'd like, you can rename the directory to "dockerapps" or something else more manageable: `sudo mv -r RockPro64-Simple-Server dockerapps`
+4. If you'd like, you can rename the directory to "dockerapps" or something else more manageable: `sudo mv RockPro64-Simple-Server dockerapps`
 
 
 ## Install the Apps
