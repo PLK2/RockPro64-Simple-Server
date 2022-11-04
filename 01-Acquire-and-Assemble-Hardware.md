@@ -23,7 +23,7 @@ You can purchase the above from these suppliers:
 
 If ordering from Pine64, I recommend you pay the premium for UPS shipping as they are located in China. UPS will get it to you in a few days once it's shipped; otherwise, expect to wait a month. AmeriDroid is located in the US, though they may not have everything in stock.
 
-***Note on the PCIe SATA Card***: According to the [Pine Wiki](https://wiki.pine64.org/wiki/NASCase#What_other_bare-minimum_things_do_I_need_for_a_NAS_build?), it sounds like attaching two hard drives could cause a power issue: the standard 12v/5a power supply may need to be replaced with a 12v/7.5a supply to better support the second drive. You can read through [this thread](https://www.reddit.com/r/homelab/comments/gh2r7d/my_rockpro64_personal_servernas/) which references an alternative card that you may want to use instead. In my case, the Pine card functions fine and I've had no issues, but if I were to rebuild this I'd probably opt for a different card.
+**Note on the PCIe SATA Card***: *According to the [Pine Wiki](https://wiki.pine64.org/wiki/NASCase#What_other_bare-minimum_things_do_I_need_for_a_NAS_build?), it sounds like attaching two hard drives could cause a power issue: the standard 12v/5a power supply may need to be replaced with a 12v/7.5a supply to better support the second drive. You can read through [this thread](https://www.reddit.com/r/homelab/comments/gh2r7d/my_rockpro64_personal_servernas/) which references an alternative card that you may want to use instead. In my case, the Pine card functions fine and I've had no issues, but if I were to rebuild this I'd probably opt for a different card.*
 
 ## Assembly
 Assembling your server is easy and straight forward. Grab a screw driver and watch this video:
